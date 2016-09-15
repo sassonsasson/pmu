@@ -52,6 +52,21 @@ app.controller('MainCtrl', function($scope) {
             });
         };
 
+        $scope.adminid = '';
+        $scope.adminpass = '';
+
+        $scope.adminLog = function(){
+          var id = $scope.adminid
+          var pass = $scope.adminpass
+          if(id === 'admin' && pass === 'admin'){
+            console.log('Success you are addmin')
+            
+          } else {
+            alert('Wrong ID/Password Admin access')
+          }
+          $scope.adminid = '';
+          $scope.adminpass = '';
+        }
 
       $scope.addForm = function(){
         var email = $scope.email;
