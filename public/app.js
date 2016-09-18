@@ -1,56 +1,43 @@
 var app = angular.module('marsList', ['ui.router']);
-
+// console.log('hi from the app')
 app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  // console.log('hi from the config')
+
   $stateProvider
   .state('home', {
   url: '/home',
-  templateUrl: '/index.html',
+  templateUrl: '../templates/home.html',
   controller: 'MainCtrl'
 })
   .state('admin', {
     url: '/admin',
-    templateUrl: '/templates/admin.html',
-    controller: 'MainCtrl'
+    templateUrl: '../templates/admin.html',
+    controller: 'MainCtrl',
+    // resolve: {
+    //   userPromise: ['$state', function($state){
+    //     if(document.getElementById("adminid").val() === 'admin' && document.getElementById("adminpass").val() === 'admin'){
+    //       $state.go('admin');
+    //     } else {
+    //       alert('No Go');
+    //     }
+    //   }]
+    // }
   });
 
   $urlRouterProvider.otherwise('home');
 }]);
 
-app.controller('MainCtrl', function($scope) {
+app.controller('MainCtrl', function($scope,$http,$state) {
+      // console.log('hi from the controller')
 
       $scope.email = '';
       $scope.company = '';
       $scope.subject = '';
       $scope.text = '';
-      $scope.List = [];
-
-      $scope.SendData = function ($scope,$http) {
-          console.log("working senddata")
-
-            var data = /*$.param*/{
-                email: $scope.email,
-                company: $scope.company,
-                subject: $scope.subject,
-                text: $scope.text
-            };
-        
-            var config = {
-                headers : {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-                }
-            }
-
-            $http.post('/http://localhost:9000/', data, config)
-            .success(function (data, status, headers, config) {
-                $scope.PostDataResponse = data;
-            })
-            .error(function (data, status, header, config) {
-                $scope.ResponseDetails = "Data: " + data +
-                    "<hr />status: " + status +
-                    "<hr />headers: " + header +
-                    "<hr />config: " + config;
-            });
-        };
+      $scope.dataBase = [];
+      $scope.admin123 = false;
+      $scope.tester = 'LOTS OF TEXTS'
+      $scope.aSearch = '';
 
         $scope.adminid = '';
         $scope.adminpass = '';
@@ -60,7 +47,8 @@ app.controller('MainCtrl', function($scope) {
           var pass = $scope.adminpass
           if(id === 'admin' && pass === 'admin'){
             console.log('Success you are addmin')
-            
+            $state.go('admin')
+
           } else {
             alert('Wrong ID/Password Admin access')
           }
@@ -73,35 +61,55 @@ app.controller('MainCtrl', function($scope) {
         var company = $scope.company;
         var subject = $scope.subject;
         var text = $scope.text;
-        var list = $scope.List;
 
         if(email !== '' && company !== '' && text !== '' ){
-        list.push(
-          {email: email,
-           company: company,
-           subject: subject,
-           text: text
-          })
+        var obj = {
+          email: email,
+          company: company,
+          subject: subject,
+          text: text
+        }
+        console.log('Got before Post')
+        $http.post('/admin', obj);
+
+        console.log('got after post')
         } 
-        console.log(list)
         $scope.email = '';
         $scope.company = '';
         $scope.subject = '';
         $scope.text = '';
-
+        console.log('Finished everything')
       }
 
       $scope.test = function() {
         console.log('test is working for click');
       }
 
-      $scope.submit = function() {
-        console.log('it is working');
-        if ($scope.email) {
-          $scope.List.push(this.email);
-          $scope.email = '';
-        }
-        console.log($scope.List);
-      };
+      $scope.adminLogClick = function() {
+        $scope.admin123 = !$scope.admin123
+      }
 
-    });
+    $scope.searchDB = function() {
+      console.log('this is the searchDB button click')
+
+      var success = function(data){
+        console.log('this is the data back from the server' + data)
+        $scope.dataBase = [];
+      
+        for(var i = 0; i < data.data.length; i++){
+  
+          $scope.dataBase.push(data.data[i])
+
+          }
+        console.log($scope.dataBase)
+      }
+      var error = function(){
+        console.log('Error with Data')
+      }
+      $http.get('/admin').then(success,error);
+
+    }
+
+  });
+
+    

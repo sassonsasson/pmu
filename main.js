@@ -7,36 +7,44 @@ var expressJWT = require('express-jwt');
 
 var auth = expressJWT({secret: 'SECRET'});
 
+app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 
-mongoose.connect('mongodb://localhost/passportjwt');
+//here we connect our server to our database...the name after localhost is the name of our db. Db name wont appear in mongo unless you save something to the db
+mongoose.connect('mongodb://localhost/mars');
 
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
 
 var LocalStrategy = require('passport-local').Strategy;
 
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
-
 app.get('/admin', function (req, res) {
-  res.sendFile(__dirname + '/public/templates/admin.html');
+  
+  Form.find().exec(function(err, rel){
+    res.json(rel)
+  })
+
 });
 
 var Form = require("./public/form.js");
 
-var form1 = new Form({email: 'gal@gal77.com', company: 'meGusta', subject: 'text', text: 'this is a text'});
+// var form1 = new Form({email: 'gal@gal77.com', company: 'meGusta', subject: 'text', text: 'this is a text'});
 
-form1.save()
+app.post('/admin',function(req,res){
+  var newForm = new Form(req.body);
+  
+  newForm.save();
 
-console.log(form1)
+  //respond back to the client...res.json, res.send, res.end
+  res.end();
+})
 
 app.listen(9000);
 
 
-// app.get('/hello', auth, function (req, res) {
+// app.get('/logged', auth, function (req, res) {
 //   res.json(req.user);
 // });
 //   passport.use('login', new LocalStrategy(function(username, password, done) {
@@ -51,16 +59,3 @@ app.listen(9000);
 //     });
 //   }
 // ));
-
-
-// app.post('/login', function(req, res, next){
-//   passport.authenticate('login', function(err, user){
-//     if(err){ return next(err); }
-
-//     if (user) {
-//       return res.json({token: user.generateJWT()});
-//     } else {
-//       return res.status(401);
-//     }
-//   })(req, res, next);
-// });
