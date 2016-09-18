@@ -5,6 +5,16 @@
     margin-bottom: 15px;
   } 
 
+  .table {
+    color: white;
+    font-family: verdana;
+    font-size: 15px;
+    background-color: navy;
+    background:rgb(0,0,0);  
+    background: transparent\9;  
+    background:rgba(0,0,0,0.6);
+  }
+
   body {
     background-image: url('http://mars-cdn.mmg.netdna-cdn.com/images/big_bg.jpg');
     background-size: 100%;

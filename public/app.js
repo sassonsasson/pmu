@@ -45,7 +45,7 @@ app.controller('MainCtrl', function($scope,$http,$state) {
         $scope.adminLog = function(){
           var id = $scope.adminid
           var pass = $scope.adminpass
-          if(id === 'admin' && pass === 'admin'){
+          if(id.toLowerCase() === 'admin' && pass === 'admin'){
             console.log('Success you are addmin')
             $state.go('admin')
 
@@ -62,23 +62,20 @@ app.controller('MainCtrl', function($scope,$http,$state) {
         var subject = $scope.subject;
         var text = $scope.text;
 
-        if(email !== '' && company !== '' && text !== '' ){
+        if(email !== '' && company !== '' && subject !== '' ){
         var obj = {
           email: email,
           company: company,
           subject: subject,
           text: text
         }
-        console.log('Got before Post')
         $http.post('/admin', obj);
 
-        console.log('got after post')
         } 
         $scope.email = '';
         $scope.company = '';
         $scope.subject = '';
         $scope.text = '';
-        console.log('Finished everything')
       }
 
       $scope.test = function() {
@@ -90,18 +87,13 @@ app.controller('MainCtrl', function($scope,$http,$state) {
       }
 
     $scope.searchDB = function() {
-      console.log('this is the searchDB button click')
 
       var success = function(data){
-        console.log('this is the data back from the server' + data)
         $scope.dataBase = [];
-      
         for(var i = 0; i < data.data.length; i++){
-  
           $scope.dataBase.push(data.data[i])
-
           }
-        console.log($scope.dataBase)
+        // console.log($scope.dataBase)
       }
       var error = function(){
         console.log('Error with Data')
