@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 
 //here we connect our server to our database...the name after localhost is the name of our db. Db name wont appear in mongo unless you save something to the db
-mongoose.connect('mongodb://localhost/mars');
+mongoose.connect(process.env.MONGOLAB_COPPER_URI || 'mongodb://localhost/mars');
 
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
@@ -41,7 +41,7 @@ app.post('/admin',function(req,res){
   res.end();
 })
 
-app.listen(9000);
+app.listen(process.env.PORT || '9000');
 
 
 // app.get('/logged', auth, function (req, res) {
