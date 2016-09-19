@@ -69,9 +69,10 @@ app.controller('MainCtrl', function($scope,$http,$state) {
           subject: subject,
           text: text
         }
-        $http.post('/admin', obj);
 
+          $http.post('/admin', obj);
         } 
+        
         $scope.email = '';
         $scope.company = '';
         $scope.subject = '';

@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 
-//here we connect our server to our database...the name after localhost is the name of our db. Db name wont appear in mongo unless you save something to the db
 mongoose.connect(process.env.MONGOLAB_COPPER_URI || 'mongodb://localhost/mars');
 
 app.use(express.static('public'));
@@ -37,13 +36,13 @@ app.post('/admin',function(req,res){
   
   newForm.save();
 
-  //respond back to the client...res.json, res.send, res.end
+ .res.json, res.send, res.end
   res.end();
 })
 
 app.listen(process.env.PORT || '9000');
 
-
+// code to make a user protected password ...Gal etc...
 // app.get('/logged', auth, function (req, res) {
 //   res.json(req.user);
 // });
