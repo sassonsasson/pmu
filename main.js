@@ -35,14 +35,13 @@ app.post('/admin',function(req,res){
   var newForm = new Form(req.body);
   
   newForm.save();
-
- .res.json, res.send, res.end
+//respond back
   res.end();
 })
 
 app.listen(process.env.PORT || '9000');
 
-// code to make a user protected password ...Gal etc...
+
 // app.get('/logged', auth, function (req, res) {
 //   res.json(req.user);
 // });
