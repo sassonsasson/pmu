@@ -1,0 +1,42 @@
+
+<div class="mainStatsPage text-center">
+  <nav class="mainNav navbar navbar-inverse navbar-fixed-top">
+    <div class="container navLetter">
+      <a class='' ng-click='gotoDash()'> Dashboard </a>
+      <a class='' ng-click='gotoStats()'> Stats </a>
+      <!-- <a class='' ng-click='gotoWorkout()'> Workout </a> -->
+      <p class="navbar-text navbar-right">Signed in as {{userName}} Demo</p>
+    </div>
+  </nav>
+
+    <div class="statsPage margin60">
+      <h1> Stats </h1>
+    </div>
+
+      <div class="iduno">
+        <div class='dash1 col-md-3'>
+          <h2> My Daily Stats </h2>
+
+        </div>
+        <div class='dash1 col-md-3'>
+          <h2> My Weekly Stats </h2>
+
+          <!-- Here is the chart -->
+          <div id="chartContainer" ></div>
+
+        </div>
+
+        <div class='dash1 col-md-3'>
+          <h2> My Monthly Stats </h2>
+        </div>
+
+        <div class='dash1 col-md-3'>
+          <h2> My AllTime Stats </h2>
+          <h2> Total Pushups: {{dataBase[1].pushUp}} </h3>
+
+        </div>
+
+      </div>
+
+
+</div>

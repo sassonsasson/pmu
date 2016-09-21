@@ -8,79 +8,199 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
   url: '/home',
   templateUrl: '../templates/home.html',
   controller: 'MainCtrl'
-})
+  })
+
   .state('admin', {
     url: '/admin',
     templateUrl: '../templates/admin.html',
     controller: 'MainCtrl',
-    // resolve: {
-    //   userPromise: ['$state', function($state){
-    //     if(document.getElementById("adminid").val() === 'admin' && document.getElementById("adminpass").val() === 'admin'){
-    //       $state.go('admin');
-    //     } else {
-    //       alert('No Go');
-    //     }
-    //   }]
-    // }
-  });
+  })
+
+  .state('workout', {
+    url: '/workout',
+    templateUrl: '../templates/workout.html',
+    controller: 'MainCtrl',
+  })
+
+  .state('stats', {
+    url: '/stats',
+    templateUrl: '../templates/stats.html',
+    controller: 'MainCtrl',
+  })
+
+  .state('login', {
+    url: '/login',
+    templateUrl: '../templates/login.html',
+    controller: 'MainCtrl',
+  })
+
+  .state('dash', {
+    url: '/dash',
+    templateUrl: '../templates/dash.html',
+    controller: 'MainCtrl',
+  })
+
+  .state('register', {
+    url: '/register',
+    templateUrl: '../templates/register.html',
+    controller: 'MainCtrl',
+  })
 
   $urlRouterProvider.otherwise('home');
 }]);
 
-app.controller('MainCtrl', function($scope,$http,$state) {
+app.controller('MainCtrl', function($scope,$http,$state, $window) {
       // console.log('hi from the controller')
 
       $scope.email = '';
-      $scope.company = '';
-      $scope.subject = '';
-      $scope.text = '';
+      $scope.firstName = '';
+      $scope.nick = '';
+      $scope.userPassword = '';
       $scope.dataBase = [];
       $scope.admin123 = false;
       $scope.tester = 'LOTS OF TEXTS'
       $scope.aSearch = '';
+      $scope.puAdder = null;
+      $scope.topDemo = [{
+          nick: 'Aaron',
+          pushUp: 150
+        },
+         {
+          nick: 'Brandon',
+          pushUp: 125
+        },
+         {
+          nick: 'Jona',
+          pushUp: 112
+        }];
 
-        $scope.adminid = '';
-        $scope.adminpass = '';
+        $scope.username = '';
+        $scope.password = '';
 
-        $scope.adminLog = function(){
-          var id = $scope.adminid
-          var pass = $scope.adminpass
+        $scope.logBtn = function(){
+
+        }
+
+        $scope.registerButton = function(){
+          
+          var data = {
+          username: $scope.nick,
+          password: $scope.userPassword
+
+    }
+        
+    $http({
+      method: 'POST',
+      url: '/register',
+      data: data,
+      success: function (token) {
+        var token = JSON.stringify(token);
+        localStorage['passport-jwt'] = token;
+      console.log('Sent to localStorage')
+      }
+    })
+  };
+        $scope.gotoDash = function(){
+          $state.go('dash')
+        }
+
+        $scope.gotoStats = function(){
+          $state.go('stats')
+        }
+
+        $scope.Tregister = function(){
+          $state.go('register')
+        }
+
+
+        $scope.logIn = function(){
+          var id = $scope.username
+          var pass = $scope.password
           if(id.toLowerCase() === 'admin' && pass === 'admin'){
             console.log('Success you are addmin')
-            $state.go('admin')
+            $state.go('dash')
 
           } else {
-            alert('Wrong ID/Password Admin access')
+            alert('Wrong ID/Password')
           }
-          $scope.adminid = '';
+          // $scope.adminid = '';
           $scope.adminpass = '';
         }
 
-      $scope.addForm = function(){
-        var email = $scope.email;
-        var company = $scope.company;
-        var subject = $scope.subject;
-        var text = $scope.text;
+       $scope.dateTimer = function(){
+        if(Date().split(" ")[0] === 'Sun'){
+          $scope.DaysLeft = (Math.abs(Date().split(" ")[4].split(":")[0] - 24) +' Hours Remaining')
+        } else if (Date().split(" ")[0] === 'Mon'){
+          $scope.DaysLeft = ('6 Days '+ Math.abs(Date().split(" ")[4].split(":")[0] - 24) +' Hours Remaining')
+        } else if (Date().split(" ")[0] === 'Tue'){
+          $scope.DaysLeft = ('5 Days '+ Math.abs(Date().split(" ")[4].split(":")[0] - 24) +' Hours Remaining')
+        } else if (Date().split(" ")[0] === 'Wed'){
+          $scope.DaysLeft = ('4 Days '+ Math.abs(Date().split(" ")[4].split(":")[0] - 24) +' Hours ' + Math.abs(Date().split(" ")[4].split(":")[2] - 60) + ' Seconds Left' )
+        } else if (Date().split(" ")[0] === 'Thu'){
+          $scope.DaysLeft = ('3 Days '+ Math.abs(Date().split(" ")[4].split(":")[0] - 24) +' Hours Remaining')
+        } else if (Date().split(" ")[0] === 'Fri'){
+          $scope.DaysLeft = ('2 Days '+ Math.abs(Date().split(" ")[4].split(":")[0] - 24) +' Hours Remaining')
+        } else if (Date().split(" ")[0] === 'Sat'){
+          $scope.DaysLeft = ('1 Days '+ Math.abs(Date().split(" ")[4].split(":")[0] - 24) +' Hours Remaining')
+        } else {
+          $scope.DaysLeft = 'Gal Go Check This'
+          console.log(Date().split(" ")[0])
+        }
+     
+       } 
+        $scope.dateTimer();
 
-        if(email !== '' && company !== '' && subject !== '' ){
+
+        $scope.maybe = function(){
+
+          // db.forms.update({"nick":"lemon"}, {$inc:{"pushUp": 1}})
+        }
+
+        $scope.updatePushUps = function(){
+          var theInput = $scope.puAdder
+          $http.put('/update')
+          window.location.reload();
+        }
+        
+
+       $scope.addPushTest = function (){
+        var noCheat = confirm('Did You Really Do ' + $scope.puAdder + ' Push Ups?');
+        if(noCheat == true){
+        $scope.dataBase[1].pushUp += Number($scope.puAdder);
+        $scope.puAdder = null
+        for(var i = 0; i < $scope.dataBase.length ; i++){
+        if($scope.dataBase[i].pushUp > $scope.topDemo[i].pushUp && $scope.dataBase[i] !== null){
+          $scope.topDemo.push($scope.dataBase[i])
+          }
+        }
+        // console.log()
+       } else {
+        console.log('Pressed Cancel');
+       }
+      } 
+
+      $scope.registerForm = function(){
+        var name = $scope.firstName;
+        var nick = $scope.nick;
+        var password = $scope.userPassword;
+
+        if(name !== '' && nick !== '' && password !== '' ){
         var obj = {
-          email: email,
-          company: company,
-          subject: subject,
-          text: text
+          name: name,
+          nick: nick,
+          password: password,
+          pushUp: 0
         }
 
           $http.post('/admin', obj);
-        } 
+          $state.go('dash')
         
-        $scope.email = '';
-        $scope.company = '';
-        $scope.subject = '';
-        $scope.text = '';
-      }
-
-      $scope.test = function() {
-        console.log('test is working for click');
+        $scope.nick = '';
+        $scope.firstName = '';
+        $scope.userPassword = '';
+        } else {
+          alert('Please Fill all the information')
+        }
       }
 
       $scope.adminLogClick = function() {
@@ -94,7 +214,6 @@ app.controller('MainCtrl', function($scope,$http,$state) {
         for(var i = 0; i < data.data.length; i++){
           $scope.dataBase.push(data.data[i])
           }
-        // console.log($scope.dataBase)
       }
       var error = function(){
         console.log('Error with Data')
@@ -103,6 +222,31 @@ app.controller('MainCtrl', function($scope,$http,$state) {
 
     }
 
-  });
+    $scope.searchDB()
 
     
+  //     window.onload = function () {
+  //     $scope.chart = new $window.CanvasJS.Chart("chartContainer", {
+  //       title:{
+  //         text: "Weekly Chart"              
+  //       },
+  //       data: [              
+  //       {
+  //         // Change type to "doughnut", "line", "splineArea", etc.
+  //         type: "line",
+  //         dataPoints: [
+  //           { label: "Mon",  y: 10  },
+  //           { label: "Tue", y: 15  },
+  //           { label: "Wen", y: 25  },
+  //           { label: "Thu",  y: 30  },
+  //           { label: "Fri",  y: 10  },
+  //           { label: "Sat",  y: 30  },
+  //           { label: "Sun",  y: 40 }
+  //         ]
+  //       }
+  //       ]
+  //     });
+  //     $scope.chart.render();
+  //   }
+  });
+

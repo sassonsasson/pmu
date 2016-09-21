@@ -1,0 +1,60 @@
+<div class='dashMaster text-center'>
+        <nav class="mainNav navbar navbar-inverse navbar-fixed-top">
+          <div class="container navLetter">
+            <a class='' ng-click='gotoDash()'> Dashboard </a>
+            <a class='' ng-click='gotoStats()'> Stats </a>
+            <!-- <a class='' ng-click='gotoWorkout()'> Workout </a> -->
+            <p class="navbar-text navbar-right">Signed in as {{dataBase[1].nick}}</p>
+          </div>
+        </nav>
+
+      <div class='dashMain margin60'>
+
+        <div>
+          <h1> PushMeUp Dashbaord </h1>
+        </div>
+
+        <div class='overView'>
+          <h2> This Week: </h2>
+                <!-- <button type="submit" class="btn btn-default" ng-click="searchDB()">Search</button> -->
+
+          <div class='overViewer'>
+
+              <div class='dash1 col-md-4'>
+                <h2 class="timerCountDown"> {{DaysLeft}} </h2>
+                <h2> Top This Week</h2>
+                <div class='topUsers boxBox' ng-repeat='user in dataBase | orderBy:"-pushUp" | limitTo : 3'>
+                  <h4> <img src='https://maxcdn.icons8.com/Share/icon/Sports//trophy1600.png' style='width:50px;height:50px;'>
+                    {{user.nick}}, With {{user.pushUp}} Reps! </h4>
+                  <!-- <h4> <p> <img src='http://vignette3.wikia.nocookie.net/headsoccer/images/1/11/044613-glossy-silver-icon-sports-hobbies-cup-trophy.png/revision/latest?cb=20160321095945' style='width:50px;height:50px;'>
+                  {{top.name}}, With {{top.two.reps}} Reps! </h4>
+                  <h4> <img src='http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/256/Trophy-bronze-icon.png' style='width:50px;height:50px;'> {{top.three.name}}, With {{top.three.reps}} Reps! </h4> -->
+                </div>
+              </div>
+              <div class='dash1 col-md-4'>
+                <h2> My Stats </h2>
+                  <!-- <button ng-click="maybe()"> click </button> -->
+                  <div class='userStats boxBox'>
+                    
+                    <h3> Nick: {{dataBase[1].nick}} </h3>
+                    <h3> PushUps: {{dataBase[1].pushUp}} </h3>
+
+                    <!-- <p> Reps Today: 0 Reps </p>
+                    <p> Reps this week: 80 Reps </p>
+                    <p> Total Overall: 1520 Reps </p> -->
+                  </div>
+              </div>
+              <div class='dash1 col-md-4'>
+                <h2> PushMeUp! </h2>
+                  <div class='addReps boxBox'>
+                    <h3> How Many Push-Ups Did you do? </h3>
+                    <input type="text" class="form-control" id="addReps" placeholder="" ng-model='puAdder' required>
+                    <button type="submit" class="btn btn-default" ng-click="updatePushUps()">Push</button>
+                  </div>
+              </div>
+    
+          </div>
+        </div>
+      </div>
+
+</div>

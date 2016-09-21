@@ -5,26 +5,99 @@
     margin-bottom: 15px;
   } 
 
-  .table {
+  .registerForm {
     color: white;
     font-family: verdana;
     font-size: 15px;
+    height: auto;
+    padding: 25px;
+    background-color: navy;
+    background:rgb(0,0,0);  
+    background: transparent\9;  
+    background:rgba(0,0,0,0.4);
+  }
+
+  .timerCountDown {
+    text-shadow: 1px 1px 2px black, 2px 2px 4px green, 0 0 15px green, 0 0 3px lightgreen;
+    font-size: 25px;
+  }
+
+  .dash1 {
+    /*padding: 10px;*/
     background-color: navy;
     background:rgb(0,0,0);  
     background: transparent\9;  
     background:rgba(0,0,0,0.6);
   }
 
-  body {
-    background-image: url('http://mars-cdn.mmg.netdna-cdn.com/images/big_bg.jpg');
-    background-size: 100%;
+  .boxBox p {
+    background-color: black;
+    background:rgb(0,0,0);  
+    background: transparent\9;  
+    background:rgba(0,0,0,0.3);
   }
+
+  .navLetter {
+    padding-top: 10px;
+  }
+
+  .mainNav a {
+    padding: 50px;
+    font-size: 33px;
+    text-decoration: none;
+  }
+
+  .mainNav a:hover {
+    color:white;
+  }
+
+  .margin60 {
+    margin-top: 60px;
+  }
+
+  .overView {
+    color: white;
+    font-size: 15px;
+    text-shadow:  2px 2px 4px black,
+                  4px 4px 6px black,
+                  6px 6px 8px black,
+                  0 0 5px black,
+                  0 0 10px black,
+                  0 0 3px blue;
+  }
+
+  .info1 p {
+    font-size: 15px;
+    text-shadow:  2px 2px 4px black,
+                  4px 4px 6px black,
+                  6px 6px 8px black,
+                  0 0 5px black,
+                  0 0 10px black,
+                  0 0 3px blue;
+  }
+
+  .info1 img {
+    height: 250px;
+    max-width: 90%
+  }
+
+  label {
+    margin-bottom: 0px;
+    margin-top: 10px;
+  }
+
+  body {
+    background-image: url('http://img0.gtsstatic.com/wallpapers/65866c515eed2981ae102c743878ce96_large.jpeg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
   .meetText {
     margin-bottom: 15px;
   }
 
   .logbtn {
-    margin-right: 40px;
+    /*margin-right: 40px;*/
   }
 
   .dataSearchIn {
@@ -51,18 +124,34 @@
     margin-top: 10px;
   }
 
+  .info1 {
+    max-height: 500px;
+    height: 400px;
+    color: white;
+    background-color: lightgrey;
+    background:rgb(0,0,0);  
+    background: transparent\9;  
+    background:rgba(0,0,0,0.6);
+  }
+
   .btn {
-    margin-top: 10px;
+    
   }
 
   h1 {
-    font-family: "Century Gothic", sans-serif;
+    font-family: 'Rockwell', sans-serif;
     color: white;
-    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    font-size: 80px;
+    text-shadow:  2px 2px 4px blue,
+                  4px 4px 6px black,
+                  6px 6px 8px black,
+                  0 0 5px black,
+                  0 0 10px black,
+                  0 0 3px blue;
   }
 
   h2{
-    font-family: "Century Gothic", sans-serif;
+    font-family: "Copperplate", sans-serif;
     color: white;
     text-shadow: 1px 1px 2px black, 0 0 15px orange, 0 0 3px red;
   }

@@ -13,15 +13,17 @@
                       <th>Company</th>
                       <th>Subject</th>
                       <th>Text</th>
+                      <th>Weight</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr ng-repeat="data in dataBase | filter:aSearch">
                       <th scope="row"></th>
                       <td>{{data.email}}</td>
-                      <td>{{data.company}}</td>
-                      <td>{{data.subject}}</td>
-                      <td>{{data.text}}</td>
+                      <td>{{data.last}}</td>
+                      <td>{{data.first}}</td>
+                      <td>{{data.password}}</td>
+                      <td>{{data.weight}}</td>
                     </tr>
                   </tbody>
                 </table>
