@@ -157,7 +157,7 @@ app.controller('MainCtrl', function($scope,$http,$state, $window) {
         }
 
         $scope.updatePushUps = function(){
-          var theInput = $scope.puAdder
+          // var theInput = $scope.puAdder
           $http.put('/update')
           window.location.reload();
         }

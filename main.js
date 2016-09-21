@@ -33,7 +33,7 @@ app.get('/register', function (req, res) {
 });
 
 app.put('/update', function(req,res){
-  Form.findOneAndUpdate({"nick": "lemon"},{$inc:{"pushUp":1}}, function(err, doc){
+  Form.findOneAndUpdate({"nick": "Cannon"},{$inc:{"pushUp":1}}, function(err, doc){
       // user.pushUps += amount
       if(err){
           console.log("Something wrong when updating data!");
