@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 
-mongoose.connect(process.env.MONGOLAB_COPPER_URI || 'mongodb://localhost/pme');
+mongoose.connect(process.env.MONGOLAB_CYAN_URI || 'mongodb://localhost/pme');
 
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
