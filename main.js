@@ -65,6 +65,17 @@ app.put('/updateJava', function(req,res){
   });
 })
 
+app.put('/updateAlbert', function(req,res){
+  Form.findOneAndUpdate({"nick": "albert"},{$inc:{"pushUp":15}}, function(err, doc){
+      // user.pushUps += amount
+      if(err){
+          console.log("Something wrong when updating data!");
+      }
+
+      console.log(doc);
+  });
+})
+
 var Form = require("./public/form.js");
 var User = require("./public/user.js");
 

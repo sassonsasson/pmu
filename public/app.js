@@ -178,6 +178,13 @@ app.controller('MainCtrl', function($scope,$http,$state, $window) {
           $http.put('/updateJava')
           window.location.reload();
         }
+
+        $scope.updatePushUpsAlbert = function(){
+          // var theInput = $scope.puAdder
+
+          $http.put('/updateAlbert')
+          window.location.reload();
+        }
         
 
        $scope.addPushTest = function (){
