@@ -53,9 +53,11 @@
                     <!-- <input type="text" class="form-control" id="addReps" placeholder="" ng-model='puAdder' required> -->
                     <button type="submit" class="btn btn-warning" ng-click="updatePushUps10()">Pushed 10</button>
                     <button type="submit" class="btn btn-primary" ng-click="updatePushUps1()">1 Pushup</button>
-                    <h3> Admin Command <h3>
+                    <h3> <button type="submit" class="btn btn-default" ng-click="adminLogClick()">Admin Menu</button> </h3>
+                    <div ng-show='admin123'>
                     <button type="submit" class="btn btn-success" ng-click="updatePushUpsJava()">JavaPushed</button>
                     <button type="submit" class="btn btn-danger" ng-click="updatePushUpsAlbert()">AlbertPushed</button>
+                    </div>
                   </div>
               </div>
     
