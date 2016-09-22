@@ -32,6 +32,10 @@
     font-size: 25px;
   }
 
+  .dash1 img {
+    width: 100%;
+  }
+
   .dash1 {
     /*padding: 10px;*/
     background-color: navy;
