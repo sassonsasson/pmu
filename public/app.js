@@ -87,25 +87,27 @@ app.controller('MainCtrl', function($scope,$http,$state, $window) {
           username: $scope.nick,
           password: $scope.userPassword
 
-    }
-        
-    $http({
-      method: 'POST',
-      url: '/register',
-      data: data,
-      success: function (token) {
-        var token = JSON.stringify(token);
-        localStorage['passport-jwt'] = token;
-      console.log('Sent to localStorage')
-      }
-    })
-  };
+          }
+              
+          $http({
+            method: 'POST',
+            url: '/register',
+            data: data,
+            success: function (token) {
+              var token = JSON.stringify(token);
+              localStorage['passport-jwt'] = token;
+            console.log('Sent to localStorage')
+            }
+          })
+        };
+
         $scope.gotoDash = function(){
           $state.go('dash')
         }
 
         $scope.gotoStats = function(){
           $state.go('stats')
+      
         }
 
         $scope.Tregister = function(){
@@ -156,9 +158,24 @@ app.controller('MainCtrl', function($scope,$http,$state, $window) {
           // db.forms.update({"nick":"lemon"}, {$inc:{"pushUp": 1}})
         }
 
-        $scope.updatePushUps = function(){
+        $scope.updatePushUps10 = function(){
           // var theInput = $scope.puAdder
-          $http.put('/update')
+
+          $http.put('/update10')
+          window.location.reload();
+        }
+
+        $scope.updatePushUps1 = function(){
+          // var theInput = $scope.puAdder
+
+          $http.put('/update1')
+          window.location.reload();
+        }
+
+        $scope.updatePushUpsJava = function(){
+          // var theInput = $scope.puAdder
+
+          $http.put('/updateJava')
           window.location.reload();
         }
         
@@ -224,29 +241,5 @@ app.controller('MainCtrl', function($scope,$http,$state, $window) {
 
     $scope.searchDB()
 
-    
-  //     window.onload = function () {
-  //     $scope.chart = new $window.CanvasJS.Chart("chartContainer", {
-  //       title:{
-  //         text: "Weekly Chart"              
-  //       },
-  //       data: [              
-  //       {
-  //         // Change type to "doughnut", "line", "splineArea", etc.
-  //         type: "line",
-  //         dataPoints: [
-  //           { label: "Mon",  y: 10  },
-  //           { label: "Tue", y: 15  },
-  //           { label: "Wen", y: 25  },
-  //           { label: "Thu",  y: 30  },
-  //           { label: "Fri",  y: 10  },
-  //           { label: "Sat",  y: 30  },
-  //           { label: "Sun",  y: 40 }
-  //         ]
-  //       }
-  //       ]
-  //     });
-  //     $scope.chart.render();
-  //   }
   });
 

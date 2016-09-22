@@ -32,8 +32,30 @@ app.get('/register', function (req, res) {
   res.sendFile(__dirname + '/register.html');
 });
 
-app.put('/update', function(req,res){
+app.put('/update10', function(req,res){
+  Form.findOneAndUpdate({"nick": "Cannon"},{$inc:{"pushUp":10}}, function(err, doc){
+      // user.pushUps += amount
+      if(err){
+          console.log("Something wrong when updating data!");
+      }
+
+      console.log(doc);
+  });
+})
+
+app.put('/update1', function(req,res){
   Form.findOneAndUpdate({"nick": "Cannon"},{$inc:{"pushUp":1}}, function(err, doc){
+      // user.pushUps += amount
+      if(err){
+          console.log("Something wrong when updating data!");
+      }
+
+      console.log(doc);
+  });
+})
+
+app.put('/updateJava', function(req,res){
+  Form.findOneAndUpdate({"nick": "Javascripter"},{$inc:{"pushUp":10}}, function(err, doc){
       // user.pushUps += amount
       if(err){
           console.log("Something wrong when updating data!");
