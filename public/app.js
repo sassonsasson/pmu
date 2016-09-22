@@ -186,6 +186,20 @@ app.controller('MainCtrl', function($scope,$http,$state, $window) {
           window.location.reload();
         }
         
+        $scope.Rank = '';
+        
+        $scope.rankPlace = function(){
+          if($scope.dataBase[1].pushUp > $scope.dataBase[0].pushUp && $scope.dataBase[1].pushUp > $scope.dataBase[2].pushUp ){
+            $scope.Rank = '1'
+          } else if($scope.dataBase[1].pushUp > $scope.dataBase[0].pushUp && $scope.dataBase[1].pushUp < $scope.dataBase[2].pushUp){
+            $scope.Rank = '2'
+          } else if($scope.dataBase[1].pushUp < $scope.dataBase[0].pushUp && $scope.dataBase[1].pushUp > $scope.dataBase[2].pushUp){
+            $scope.Rank = '3'
+          }
+
+        }
+
+        $scope.rankPlace();
 
        $scope.addPushTest = function (){
         var noCheat = confirm('Did You Really Do ' + $scope.puAdder + ' Push Ups?');
