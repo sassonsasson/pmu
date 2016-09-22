@@ -185,7 +185,7 @@ app.controller('MainCtrl', function($scope,$http,$state, $window) {
           $http.put('/updateAlbert')
           window.location.reload();
         }
-        
+
         $scope.Rank = '';
         
         $scope.rankPlace = function(){
@@ -193,13 +193,13 @@ app.controller('MainCtrl', function($scope,$http,$state, $window) {
             $scope.Rank = '1'
           } else if($scope.dataBase[1].pushUp > $scope.dataBase[0].pushUp && $scope.dataBase[1].pushUp < $scope.dataBase[2].pushUp){
             $scope.Rank = '2'
-          } else if($scope.dataBase[1].pushUp < $scope.dataBase[0].pushUp && $scope.dataBase[1].pushUp > $scope.dataBase[2].pushUp){
+          } else if($scope.dataBase[1].pushUp > $scope.dataBase[2].pushUp && $scope.dataBase[1].pushUp < $scope.dataBase[0].pushUp){
+            $scope.Rank = '2'
+          } else if($scope.dataBase[1].pushUp < $scope.dataBase[0].pushUp && $scope.dataBase[1].pushUp < $scope.dataBase[2].pushUp){
             $scope.Rank = '3'
           }
 
         }
-
-        $scope.rankPlace();
 
        $scope.addPushTest = function (){
         var noCheat = confirm('Did You Really Do ' + $scope.puAdder + ' Push Ups?');
@@ -252,6 +252,7 @@ app.controller('MainCtrl', function($scope,$http,$state, $window) {
         for(var i = 0; i < data.data.length; i++){
           $scope.dataBase.push(data.data[i])
           }
+          $scope.rankPlace()
       }
       var error = function(){
         console.log('Error with Data')
