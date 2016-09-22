@@ -27,24 +27,28 @@
                   <h4> <img src='https://maxcdn.icons8.com/Share/icon/Sports//trophy1600.png' style='width:50px;height:50px;'>
                     {{user.nick}}, With {{user.pushUp}} Reps! </h4>
                 </div>
-                  <h3> Weekly Handicap </h3>
-                  <h4> Albert Pushups -30% </h4>
-                  <h4> Javascripter Pushups -20% </h4>
-                  <h4> Cannon Pushups -10% </h4>
+                  <h3 class='handiCap'> Weekly Handicap </h3>
+                  <h4> Albert Pushups <h4 class='handiCap'> -30% </h4> </h4>
+                  <h4> Javascripter Pushups <h4 class='handiCap'> -20% </h4> </h4>
+                  <h4> Cannon Pushups <h4 class='handiCap'> -10% </h4> </h4>
               </div>
               <div class='dash1 col-md-4'>
                 <h2> My Stats </h2>
-                  <!-- <button ng-click="maybe()"> click </button> -->
+                 
                   <div class='userStats boxBox'>
                     
-                    <h3> Nick: {{dataBase[1].nick}} </h3>
+                    <h3> {{dataBase[1].nick}} </h3>
                     <h4> Current Rank: {{Rank}} </h4>
                     <h4> Last Week's Rank: 3 </h4>
                     <h3> Weekly PushUps: {{dataBase[1].pushUp}} </h3>
 
-                    <!-- <p> Reps Today: 0 Reps </p>
-                    <p> Reps this week: 80 Reps </p>
-                    <p> Total Overall: 1520 Reps </p> -->
+                    <br>
+                    <br>
+
+                    <div class='weekPrize'>
+                     <h2> Weekly Prize </h2>
+                     <h3> 1st Place: Free Lunch </h3>
+                    </div>
                   </div>
               </div>
               <div class='dash1 col-md-4'>
